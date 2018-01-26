@@ -191,7 +191,9 @@ public class Socket {
     
     func sendTCP(packet: OSCPacket, withStreamFraming streamFraming: OSCParser.streamFraming) {
         if let socket = self.tcpSocket, !packet.packetData().isEmpty {
-            if streamFraming == .SLIP {
+			switch streamFraming
+			{
+			case .SLIP:
                 // Outgoing OSC messages are framed using the double END SLIP protocol http://www.rfc-editor.org/rfc/rfc1055.txt
 
                 let escENDbytes: [UInt8] = [UInt8(slipCharacter.ESC.rawValue), UInt8(slipCharacter.ESC_END.rawValue)]
@@ -218,7 +220,19 @@ public class Socket {
                 }
                 slipData.append(UnsafeBufferPointer(start: &endValue, count: 1))
                 socket.write(slipData, withTimeout: timeout, tag: packet.packetData().count)
-            }
+			case .PLH:
+				print("packet length header")
+				var plhData = Data()
+				print("size is \(packet.packetData().count)")
+
+				var size = UInt32(packet.packetData().count).byteArray()
+				print("size is \(size)")
+				plhData.append(UnsafeBufferPointer(start: &size, count: 4))
+				plhData.append(packet.packetData())
+				socket.write(plhData, withTimeout: timeout, tag: packet.packetData().count)
+				
+			}
+			
         }
     }
     

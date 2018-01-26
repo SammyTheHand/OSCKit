@@ -34,17 +34,20 @@ class ViewController: NSViewController, OSCClientDelegate, OSCPacketDestination 
     
     override func viewDidAppear() {
 //        client.interface = "172.16.6.132"
-        client.host = "192.168.0.26"
+        //client.host = "192.168.0.26"
+		client.host = "localhost"
 //        client.interface = "en0"
         client.port = 3032
         client.useTCP = true
         client.delegate = self
+		
         do {
             try client.connect()
             print("Connecting")
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+		client.streamFraming = .PLH
 
     }
     
@@ -119,7 +122,15 @@ class ViewController: NSViewController, OSCClientDelegate, OSCPacketDestination 
     @IBAction func sendMessage(_ sender: Any) {
         let message = OSCMessage(messageWithAddressPattern: "/eos/ping", arguments: [])
         client.send(packet: message)
+		textView.string += "sent:"
+		self.write(message, withIndent: 0)
     }
+	@IBAction func reconnect(_ sender: Any)
+	{
+		client.disconnect()
+		try? client.connect()
+		
+	}
 }
 
 

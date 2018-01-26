@@ -756,6 +756,17 @@
                                     <action selector="sendMessage:" target="XfG-lQ-9wD" id="0Te-uq-Qmk"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DGh-5y-c9Z">
+                                <rect key="frame" x="209" y="13" width="102" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="reconnect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="khs-Gg-wbC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="reconnect:" target="XfG-lQ-9wD" id="T0e-yp-YV5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="aOs-oT-a0l" secondAttribute="bottom" constant="20" id="42I-HC-KRa"/>
