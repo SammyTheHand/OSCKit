@@ -37,7 +37,11 @@ public class OSCMessage: OSCPacket {
     public let argumentTypes: [OSCArgument]
     public var replySocket: Socket? = nil
     
-    public init(messageWithAddressPattern addressPattern: String, arguments: [Any]) {
+    /// Creates an OSC Message
+    /// - Parameters:
+    ///   - addressPattern: An OSC-string beginning with the character '/' (forward slash).
+    ///   - arguments: A sequence of OSC Arguments (String, Int, Float, Data, OSCTimetag, OSCTrue, OSCFalse, OSCNil, OSCImpulse)
+    public init(with addressPattern: String, arguments: [Any]) {
         if addressPattern.isEmpty || addressPattern.count == 0 || addressPattern.first != "/" {
             self.addressPattern = "/"
         } else {

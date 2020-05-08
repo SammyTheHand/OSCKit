@@ -250,7 +250,7 @@ public class OSCParser {
                 }
             }
         }
-        return OSCMessage(messageWithAddressPattern: addressPattern, arguments: arguments)
+        return OSCMessage(with: addressPattern, arguments: arguments)
     }
     
     private func parseOSCBundle(with data: Data) throws -> OSCBundle {

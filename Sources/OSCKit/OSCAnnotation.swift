@@ -126,7 +126,7 @@ public class OSCAnnotation {
                         }
                     }
                 }
-                return OSCMessage(messageWithAddressPattern: String(addressPattern), arguments: oscArguments)
+                return OSCMessage(with: String(addressPattern), arguments: oscArguments)
             } catch {
                 return nil
             }
@@ -182,7 +182,7 @@ public class OSCAnnotation {
                         
                     }
                 }
-                return OSCMessage(messageWithAddressPattern: String(addressPattern), arguments: oscArguments)
+                return OSCMessage(with: String(addressPattern), arguments: oscArguments)
             } catch {
                 return nil
             }
