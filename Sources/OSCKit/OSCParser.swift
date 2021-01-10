@@ -206,7 +206,11 @@ public class OSCParser {
         guard let addressPattern = oscString(with: data, startIndex: &firstIndex) else {
             throw OSCParserError.cantParseAddressPattern
         }
-        print("Address Pattern: \(addressPattern)")
+        
+        #if Server_Debug || Client_Debug
+        debugPrint("Address Pattern: \(addressPattern)")
+        #endif
+        
         guard let typeTagString = oscString(with: data, startIndex: &firstIndex) else {
             throw OSCParserError.cantParseTypeTagString
         }
